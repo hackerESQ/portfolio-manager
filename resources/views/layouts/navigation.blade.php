@@ -20,6 +20,9 @@
                         {{ __('Portfolios') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('transaction.index')" :active="request()->routeIs('transaction.index')">
+                        {{ __('Transactions') }}
+                    </x-nav-link>
                 </div>
             </div>
 
