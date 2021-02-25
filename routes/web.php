@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +19,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['middleware' => 'auth'], function() {
+
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::resource('portfolio', PortfolioController::class);
+    Route::resource('transaction', TransactionController::class);
+
+});
+
+require __DIR__.'/auth.php';
